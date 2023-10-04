@@ -1,12 +1,5 @@
-//
-//  ContentView.swift
-//  BannersSwiftUI
-//
-//  Created by Jean-Marc Boullianne on 11/30/19.
-//  Copyright © 2019 Jean-Marc Boullianne. All rights reserved.
-//
-
 import SwiftUI
+import Banner
 
 struct ContentView: View {
     
@@ -43,8 +36,3 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

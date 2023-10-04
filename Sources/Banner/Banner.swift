@@ -8,15 +8,21 @@
 
 import SwiftUI
 
-struct BannerModifier: ViewModifier {
+public struct BannerModifier: ViewModifier {
     
-    struct BannerData {
-        var title:String
-        var detail:String
-        var type: BannerType
+    public struct BannerData {
+        public let title: String
+        public let detail: String
+        public var type: BannerType
+        
+        public init(title: String, detail: String, type: BannerType) {
+            self.title = title
+            self.detail = detail
+            self.type = type
+        }
     }
     
-    enum BannerType {
+    public enum BannerType {
         case Info
         case Warning
         case Success
@@ -37,10 +43,10 @@ struct BannerModifier: ViewModifier {
     }
     
     // Members for the Banner
-    @Binding var data:BannerData
-    @Binding var show:Bool
+    @Binding var data: BannerData
+    @Binding var show: Bool
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         ZStack {
             content
             if show {
@@ -80,7 +86,7 @@ struct BannerModifier: ViewModifier {
 
 }
 
-extension View {
+public extension View {
     func banner(data: Binding<BannerModifier.BannerData>, show: Binding<Bool>) -> some View {
         self.modifier(BannerModifier(data: data, show: show))
     }
