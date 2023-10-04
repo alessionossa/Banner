@@ -4,35 +4,43 @@ import Banner
 struct ContentView: View {
     
     @State var showBanner:Bool = false
-    @State var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "Notification Title", detail: "Notification text for the action you were trying to perform.", type: .Warning)
+    @State var bannerData: BannerData? = BannerData(title: "Notification Title", detail: "Notification text for the action you were trying to perform.", type: .Warning)
+    
     var body: some View {
         VStack(alignment: .center, spacing: 4) {
             Button(action: {
-                self.bannerData.type = .Info
-                self.showBanner = true
+                withAnimation {
+                    self.bannerData = BannerData(title: "Notification Title", detail: "Notification text for the action you were trying to perform.", type: .Info)
+                }
             }) {
                 Text("[ Info Banner ]")
             }
             Button(action: {
-                self.bannerData.type = .Success
-                self.showBanner = true
+                withAnimation {
+                    self.bannerData = BannerData(title: "Notification Title", detail: "Notification text for the action you were trying to perform.", type: .Success)
+                }
             }) {
                 Text("[ Success Banner ]")
             }
             Button(action: {
-                self.bannerData.type = .Warning
-                self.showBanner = true
+                withAnimation {
+                    self.bannerData = BannerData(title: "Notification Title", detail: "Notification text for the action you were trying to perform.", type: .Warning)
+                }
             }) {
                 Text("[ Warning Banner ]")
             }
             Button(action: {
-                self.bannerData.type = .Error
-                self.showBanner = true
+                withAnimation {
+                    self.bannerData = BannerData(title: "Notification Title", detail: "Notification text for the action you were trying to perform.", type: .Error)
+                }
             }) {
                 Text("[ Error Banner ]")
             }
-        }.banner(data: $bannerData, show: $showBanner)
-        
+        }
+        .banner(data: $bannerData)
     }
 }
 
+#Preview {
+    ContentView()
+}

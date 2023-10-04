@@ -4,7 +4,20 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                List {
+                    NavigationLink("Single") {
+                        ContentView()
+                    }
+                    
+                    NavigationLink("Multiple") {
+                        ContentViewBanners()
+                    }
+                }
+
+                .listStyle(.inset)
+                .navigationTitle("Banner Sample")
+            }
         }
     }
 }
