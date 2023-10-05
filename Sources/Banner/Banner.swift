@@ -46,24 +46,29 @@ public struct BannersModifier: ViewModifier {
     // Members for the Banner
     @Binding var data: [BannerData]
     
-    public func body(content: Content) -> some View {
-        ZStack {
-            content
-            
-            VStack {
-                ForEach(data) { bannerData in
-                    Banner(data: bannerData) {
-                        withAnimation {
-                            if let index = data.firstIndex(where: { $0.id == bannerData.id }) {
-                                data.remove(at: index)
-                            }
+    var bannersContainer: some View {
+        VStack {
+            ForEach(data) { bannerData in
+                Banner(data: bannerData) {
+                    withAnimation {
+                        if let index = data.firstIndex(where: { $0.id == bannerData.id }) {
+                            data.remove(at: index)
                         }
-                        
                     }
+                    
                 }
-                
-                Spacer()
             }
+            .fixedSize(horizontal: false, vertical: true)
+            
+            Spacer()
+        }
+ 
+    }
+    
+    public func body(content: Content) -> some View {
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .top)) {
+            content
+            bannersContainer
         }
     }
 
